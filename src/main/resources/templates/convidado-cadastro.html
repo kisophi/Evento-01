@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Edita de evento</title>
+</head>
+<body>
+
+	<div class="container">
+		<fieldset>
+		<legend>Navbar</legend>
+			<h4><a href="/">home</a>
+			&nbsp;
+			<a href="/eventoLista">Lista</a>
+			&nbsp;
+			<a href="/eventoCadastro">Cadastro</a></h4>
+			&nbsp;
+		</fieldset>
+		&nbsp;
+	</div>
+	
+	<div class="container">
+	<fieldset><legend>Descricao do Evento</legend>
+		<label>ID:</label>
+		<span th:text="*{evento.eventoId}"></span>
+		&nbsp;&nbsp;
+		
+		<label>Descrição:</label>
+		<span th:text="*{evento.eventoDescricao}"></span>
+		&nbsp;&nbsp;
+		
+		<label>Local:</label>
+		<span th:text="*{evento.eventoLocal}"></span>
+		&nbsp;&nbsp;
+		
+		<label>Data:</label>
+		<span th:text="*{evento.eventoData}"></span>
+		&nbsp;&nbsp;
+		
+		<label>Horario:</label>
+		<span th:text="*{evento.eventoHorario}"></span>
+		&nbsp;&nbsp;
+	</fieldset>
+	</div>
+	
+	&nbsp;
+	<div class="container">
+		<fieldset><legend>Cadastra Convidado</legend>
+			<form method="post">
+				<label>Name:</label>
+				<input type="text" name="convidadoNome"/>
+				
+				<label>CPF:</label>
+				<input type="text" name="convidadoCpf"/>
+				
+				<input type="submit" value="Adiciona">
+			</form>
+		</fieldset>
+	</div>
+	
+	&nbsp;
+	<div class="container">
+		<fieldset><legend>Descricao do Convidado</legend>
+			<table class="" border="1">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+					<th>CPF</th>
+					<th>D</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="c : ${convidados}" >
+					<td th:text="${c.convidadoId}"></td>
+					<td th:text="${c.convidadoNome}"></td>
+					<td th:text="${c.convidadoCpf}"></td>
+					<td><a th:href="@{/excluiConvidado/{id}(id=${c.convidadoId})}">Excluir</a> </td>
+				</tr>
+			</tbody>
+		</table>
+		</fieldset>
+	</div>
+
+</body>
+</html>

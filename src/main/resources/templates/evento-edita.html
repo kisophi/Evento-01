@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Edita de evento</title>
+</head>
+<body>
+
+	<div class="container">
+		<fieldset>
+		<legend>Navbar</legend>
+			<h4><a href="/">home</a>
+			&nbsp;
+			<a href="/eventoLista">Lista</a>
+			&nbsp;
+			<a href="/eventoCadastro">Cadastro</a></h4>
+			&nbsp;
+		</fieldset>
+		&nbsp;
+	</div>
+	
+	<div class="container">
+		<fieldset>
+		<legend>Cadastro de Evento</legend>
+			<form method="post">
+				<label id="label-1">ID:</label>
+				<input type="text" name="eventoDescricao" th:field="${evento.eventoId}" readonly="readonly"/>
+				
+				<label id="label-1">Name:</label>
+				<input type="text" name="eventoDescricao" th:field="*{evento.eventoDescricao}"/>
+				
+				<label id="label-1">Local:</label>
+				<input type="text" name="eventoLocal" th:field="*{evento.eventoLocal}"/>
+				
+				<label id="label-1">Data:</label>
+				<input type="date" name="eventoData" th:field="*{evento.eventoData}"/>
+				
+				<label id="label-1">Horario:</label>
+				<input type="time" name="eventoHorario" th:field="*{evento.eventoHorario}"/>
+					
+				&nbsp;
+				<input type="submit" value="Salvar">
+			</form>
+		</fieldset>
+	</div>
+
+</body>
+</html>
