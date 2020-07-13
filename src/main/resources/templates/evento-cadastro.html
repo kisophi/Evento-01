@@ -19,12 +19,19 @@
 		&nbsp;
 	</div>
 	
+	<div>
+		<div th:each="msg : ${msg}">
+			<span th:text="${msg}"></span>		
+		</div>
+	</div>
+	
 	
 	<div class="container">
 		<fieldset>
 		<legend>Cadastro de Evento</legend>
 			<form method="post">
-				<label id="label-1">Name:</label>
+			
+				<label id="label-1">Descrição:</label>
 				<input type="text" name="eventoDescricao"/>
 				
 				<label id="label-1">Local:</label>

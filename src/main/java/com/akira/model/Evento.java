@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Evento implements Serializable {
@@ -16,6 +18,9 @@ public class Evento implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer eventoId;
+	
+	@NotEmpty(message = "O campo Descrição não pode ser Nulo")
+	@NotBlank(message = "O campo Descricao não pode ser vazio")
 	private String eventoDescricao;
 	private String eventoData;
 	private String eventoLocal;
@@ -72,10 +77,6 @@ public class Evento implements Serializable {
 
 	public void setEventoHorario(String eventoHorario) {
 		this.eventoHorario = eventoHorario;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

@@ -1,11 +1,18 @@
 package com.akira.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,7 +59,19 @@ public class EventoController {
 	
 	//Salva o Cadastro de Eventos
 	@RequestMapping(value = "/eventoCadastro",method = RequestMethod.POST)
-	public String SalvaCadastro(Evento evento) {
+	public String SalvaCadastro(@Valid Evento evento,BindingResult result, Model model) {
+		
+		if(result.hasErrors()) {
+			
+			List<String> msg = new ArrayList<String>();
+			for (ObjectError objectError : result.getAllErrors()) {
+				msg.add(objectError.getDefaultMessage()); // message do erro @annotations do model
+			}
+			
+			model.addAttribute("msg", msg);
+			return "evento-cadastro";
+		}
+		
 		er.save(evento);
 		
 		//redireciona para lista de eventos
